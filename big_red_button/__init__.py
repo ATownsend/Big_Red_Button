@@ -9,9 +9,9 @@ def threaded(fn):
     return wrapper
 
 class big_red_button:
-    def __init__(self, lightArray, button, lightAnimationPattern = None, sleepTime = 0.5):
+    def __init__(self, lightArray, button, lightAnimationPattern = None, sleepTime = 0.27):
         self.toggle = False
-        self.sleepTime = 0.001
+        self.sleepTime = sleepTime
         self.button = button
         self.running = False
         #light animation pattern examples (4x4 lit and 4x4 blank)
