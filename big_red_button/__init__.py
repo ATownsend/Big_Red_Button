@@ -26,7 +26,8 @@ class big_red_button:
             self.setLights([lightPattern[0], [0,0]])
         elif self.toggle == False:
             self.setLights([[0,0], lightPattern[1]])
-    def setLights(self, lightPattern = self.currentLightPattern):
+    def setLights(self, lightPattern = None):
+        if lightPattern == None: lightPattern = self.currentLightPattern
         for vertical in [0,1]:
             for horizontal in [0,1]:
                 self.lightArray[vertical][horizontal].duty_cycle = self.lightValue(lightPattern[vertical][horizontal])
