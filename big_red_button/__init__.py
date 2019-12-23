@@ -16,22 +16,7 @@ class big_red_button:
 		#[[0,0],
 		# [0,0]],
 		self.lightArray = lightArray
-		self.lightAnimationPattern = 
-			[
-				[[  0,  0],
-				 [  1,  1]],
-				[[0.5,  0],
-				 [0.5,0.5]],
-				[[  1,0.5],
-				 [  1,  1]],
-				[[  1,  1],
-				 [0.5,0.5]],
-				[[0.5,  1],
-				 [  1,  1]],
-				[[  0,0.5],
-				 [0.5,0.5]]
-			]
-
+		self.lightAnimationPattern = [ [[  0,  0], [  1,  1]],    [[0.5,  0], [0.5,0.5]],    [[  1,0.5], [  1,  1]],    [[  1,  1], [0.5,0.5]],     [[0.5,  1], [  1,  1]],     [[  0,0.5], [0.5,0.5]] ]
 		self.lightPattern =[]
 	def setAnimationPattern(self, lightAnimationPattern):
 		self.lightAnimationPattern = lightAnimationPattern
@@ -50,7 +35,7 @@ class big_red_button:
 		while True:
 			currentState = self.toggle
 			for lightArray in lightAnimationPattern:
-				if currentState not self.toggle:
+				if currentState != self.toggle:
 					break
 	        	time.sleep(sleepTime)
 	        	self.setLights(lightArray)

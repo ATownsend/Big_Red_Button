@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 from board import SCL, SDA
 import busio
-from squarebutton import squarebutton
 import time
 from gpiozero import Button
 from big_red_button import big_red_button
