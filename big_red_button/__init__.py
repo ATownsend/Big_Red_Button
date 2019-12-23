@@ -21,7 +21,7 @@ class big_red_button:
     def setAnimationPattern(self, lightAnimationPattern):
         self.lightAnimationPattern = lightAnimationPattern
     def setToggleLights(self, lightPattern = None):
-    	if lightPattern == None : lightPattern = self.currentLightPattern
+        if lightPattern == None : lightPattern = self.currentLightPattern
         if self.toggle == True:
             self.setLights([lightPattern[0], [0,0]])
         elif self.toggle == False:
@@ -33,8 +33,8 @@ class big_red_button:
 
     @threaded
     def runLights(self, lightAnimationPattern = None, sleepTime=None ):
-    	if lightAnimationPattern == None: lightAnimationPattern = self.lightAnimationPattern
-    	if sleepTime == None: sleepTime = self.sleepTime
+        if lightAnimationPattern == None: lightAnimationPattern = self.lightAnimationPattern
+        if sleepTime == None: sleepTime = self.sleepTime
         while True:
             currentState = self.toggle
             for lightArray in lightAnimationPattern:
