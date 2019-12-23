@@ -23,7 +23,6 @@ lightButtons = {
     'rightRunButton'  : big_red_button([[pca.channels[0],pca.channels[1]],[pca.channels[2],pca.channels[3]]],Button(pin=21), stopLightAnimationPattern)
 }
 
-lightButtons['leftHighButton'].setAnimationPattern()
 
 for key in lightButtons:
     lightButtons[key].runLights()
