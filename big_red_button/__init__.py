@@ -14,6 +14,7 @@ class big_red_button:
         self.sleepTime = sleepTime
         self.button = button
         self.running = False
+        self.output = False
         #light animation pattern examples (4x4 lit and 4x4 blank)
         #[[1,1],
         # [1,1]],
@@ -27,17 +28,25 @@ class big_red_button:
 
     def setAnimationPattern(self, lightAnimationPattern):
         self.lightAnimationPattern = lightAnimationPattern
+    def getAnimationPattern(self):
+        return self.lightAnimationPattern
     def setToggleLights(self, lightPattern = None):
         if lightPattern == None : lightPattern = self.currentLightPattern
         if self.toggle == True:
-            self.setLights([lightPattern[0], [0,0]])
+            lightPattern = [lightPattern[0], [0,0]]
         elif self.toggle == False:
-            self.setLights([[0,0], lightPattern[1]])
+            lightPattern = [[0,0], lightPattern[1]]
+        return lightPattern
     def setLights(self, lightPattern = None):
         if lightPattern == None: lightPattern = self.currentLightPattern
         for vertical in [0,1]:
             for horizontal in [0,1]:
                 self.lightArray[vertical][horizontal].duty_cycle = self.lightValue(lightPattern[vertical][horizontal])
+    def setToggle(toggle = None):
+        if toggle == None: self.toggle = not self.toggle
+        else self.toggle=toggle
+    def setOutput():
+        self.output = True
 
     @threaded
     def runLights(self, lightAnimationPattern = None, sleepTime=None ):
@@ -51,7 +60,7 @@ class big_red_button:
                 if currentState != self.toggle:
                     break
                 time.sleep(sleepTime)
-                self.setToggleLights(lightArray)
+                self.setLights(self.setToggleLights(lightArray))
     def lightValue(self, brightness):
         lightValue = math.floor(65535*brightness)
         return lightValue
@@ -62,4 +71,5 @@ class big_red_button:
         while self.running == True:
             self.button.wait_for_press()
             self.toggle = not self.toggle
+            if self.output : print(self.toggle)
             self.button.wait_for_release()
