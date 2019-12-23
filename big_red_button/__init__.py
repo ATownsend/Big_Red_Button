@@ -42,8 +42,8 @@ class big_red_button:
         if lightAnimationPattern == None: lightAnimationPattern = self.lightAnimationPattern
         if sleepTime == None: sleepTime = self.sleepTime
         self.running = True
+        self.pressButton()
         while self.running == True:
-            self.pressButton()
             currentState = self.toggle
             for lightArray in lightAnimationPattern:
                 if currentState != self.toggle:
