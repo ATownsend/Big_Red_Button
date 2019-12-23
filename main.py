@@ -17,6 +17,6 @@ pca.frequency = 60
 
 
 
-leftRunButton = big_red_button([pca.channels[8],pca.channels[9],pca.channels[10],pca.channels[11]],Button(pin=16))
-pca.channels[8].dutycycle = 0xffff
+leftRunButton = big_red_button([[pca.channels[8],pca.channels[9]],[pca.channels[10],pca.channels[11]]],Button(pin=16))
+pca.channels[8].duty_cycle = 0xffff
 leftRunButton.setLights([[1,1],[1,1]])
