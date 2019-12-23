@@ -25,7 +25,7 @@ lightButtons = {
 pca.channels[8].duty_cycle = 0xffff
 lightButtons['leftRunButton'].setLights([[1,1],[1,1]])
 
-
+lightButtons['rightRunButton'].runLights()
 
 
 

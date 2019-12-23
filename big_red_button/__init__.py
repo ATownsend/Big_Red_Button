@@ -1,4 +1,5 @@
 import math
+import threading
 def threaded(fn):
     def wrapper(*args, **kwargs):
         thread = threading.Thread(target=fn, args=args, kwargs=kwargs)
@@ -8,7 +9,7 @@ def threaded(fn):
 
 class big_red_button:
     def __init__(self, lightArray, button, sleepTime = 0.001):
-        
+        self.toggle = False
         self.sleepTime = 0.001
         self.button = button
         #light animation pattern examples (4x4 lit and 4x4 blank)
@@ -50,8 +51,10 @@ class big_red_button:
 
     @threaded
     def pressButton(self):
-        self.button.wait_for_press()
-        self.toggle = not self.toggle
+        while True:
+            self.button.wait_for_press()
+            self.toggle = not self.toggle
+            self.button.wait_for_release()
 
     @threaded
     def releaseButton(self):
