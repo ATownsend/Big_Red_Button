@@ -9,7 +9,7 @@ def threaded(fn):
     return wrapper
 
 class big_red_button:
-    def __init__(self, lightArray, button, sleepTime = 0.1):
+    def __init__(self, lightArray, button, lightAnimationPattern = None, sleepTime = 0.5):
         self.toggle = False
         self.sleepTime = 0.001
         self.button = button
@@ -20,7 +20,9 @@ class big_red_button:
         #[[0,0],
         # [0,0]],
         self.lightArray = lightArray
-        self.lightAnimationPattern = [ [[  0,  0], [  1,  1]],    [[0.5,  0], [0.5,0.5]],    [[  1,0.5], [  1,  1]],    [[  1,  1], [0.5,0.5]],     [[0.5,  1], [  1,  1]],     [[  0,0.5], [0.5,0.5]] ]
+        if lightAnimationPattern == None:
+            lightAnimationPattern = [ [[  0,  0], [  1,  1]],    [[0.5,  0], [0.5,0.5]],    [[  1,0.5], [  1,  1]],    [[  1,  1], [0.5,0.5]],     [[0.5,  1], [  1,  1]],     [[  0,0.5], [0.5,0.5]] ]
+        self.setAnimationPattern(lightAnimationPattern)
         self.lightPattern =[]
 
     def setAnimationPattern(self, lightAnimationPattern):
@@ -61,7 +63,3 @@ class big_red_button:
             self.button.wait_for_press()
             self.toggle = not self.toggle
             self.button.wait_for_release()
-
-    @threaded
-    def releaseButton(self):
-        self.button.wait_for_release()
