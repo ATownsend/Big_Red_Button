@@ -43,7 +43,7 @@ class big_red_button:
         for vertical in [0,1]:
             for horizontal in [0,1]:
                 self.lightArray[vertical][horizontal].duty_cycle = self.lightValue(lightPattern[vertical][horizontal])
-    def setToggle(toggle = None):
+    def setToggle(self,toggle = None):
         if toggle == None: self.toggle = not self.toggle
         else: self.toggle=toggle
     def setOutput(self):

@@ -49,7 +49,7 @@ def runButton(button, animation):
 
 
 def process_line(line, stdin, process):
-    values = line.split()
+    values = line.split(",")
     lightButtons[values[0]].setToggle(values[1])
     print(values)
 
