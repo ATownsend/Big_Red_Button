@@ -51,9 +51,10 @@ def main():
     processKeeper = {}
     for key in lightButtons:
         #lightButtons[key].runLights()
-        processKeeper[key] = sh.python("main.py", key ,json.dump(lightButtons[key].getAnimationPattern()), _out=process_line, _bg=True)
-    while true:
-        print("This Needs to be changed to a wait")
+        processKeeper[key] = sh.python("main.py", key ,json.dumps(lightButtons[key].getAnimationPattern()), _out=process_line, _bg=True)
+    processKeeper['leftHighButton'].wait()
+    #while true:
+    #    print("This Needs to be changed to a wait")
         #TODO: monitor Subprocess
 
     #for when I make casino mode or connect it to tasks/smartthings
