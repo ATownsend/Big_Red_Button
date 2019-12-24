@@ -2,7 +2,7 @@
 from board import SCL, SDA
 import busio
 import time
-from gpiozero import Button
+from gpiozero import Button, LED
 from big_red_button import big_red_button
 import argparse
 from adafruit_pca9685 import PCA9685
