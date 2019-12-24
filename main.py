@@ -72,11 +72,11 @@ def testLights(lights):
     #Crawl the Bottom
 
     for light in reversed(lightArray):
-        lights[light].setLights([lightsFull, reversed(lightsFirst)])
+        lights[light].setLights([lightsFull, list(reversed(lightsFirst))])
         time.sleep(0.2)
-        lights[light].setLights([lightsFull, reversed(lightsSecond)])
+        lights[light].setLights([lightsFull, list(reversed(lightsSecond))])
         time.sleep(0.2)
-        lights[light].setLights([lightsFull, reversed(lightsFull)])
+        lights[light].setLights([lightsFull, list(reversed(lightsFull))])
 
     
 
