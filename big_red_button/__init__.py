@@ -45,7 +45,7 @@ class big_red_button:
     def setToggle(toggle = None):
         if toggle == None: self.toggle = not self.toggle
         else: self.toggle=toggle
-    def setOutput():
+    def setOutput(self):
         self.output = True
 
     @threaded
