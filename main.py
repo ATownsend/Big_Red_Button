@@ -56,7 +56,7 @@ def testLights(lights):
     lightsSecond = [[1,0.5],[0,0]]
     lightsThird = [[1,1],[0,0]]
 
-    for light in lights:
+    for light in lightArray:
         lights[light].setLights(lightsFirst)
         time.sleep(0.2)
         lights[light].setLights(lightsSecond)
@@ -66,7 +66,7 @@ def testLights(lights):
     lightsFirst = [[0,0.5],[0,0]]
     lightsSecond = [[0.5,1],[0,0]]
     lightsThird = [[1,1],[0,0]]
-    for light in reversed(lightButtons):
+    for light in reversed(lightArray):
         lights[light].setLights(lightsFirst)
         time.sleep(0.2)
         lights[light].setLights(lightsSecond)
