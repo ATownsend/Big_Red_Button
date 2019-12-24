@@ -51,7 +51,7 @@ def main():
     processKeeper = {}
     for key in lightButtons:
         #lightButtons[key].runLights()
-        processKeeper[key] = sh.python("main.py", key ,json.dump(lightButtons.getAnimationPattern()), _out=process_line, _bg=True)
+        processKeeper[key] = sh.python("main.py", key ,json.dump(lightButtons[key].getAnimationPattern()), _out=process_line, _bg=True)
     while true:
         print("This Needs to be changed to a wait")
         #TODO: monitor Subprocess
