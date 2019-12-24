@@ -9,7 +9,10 @@ from adafruit_pca9685 import PCA9685
 import json
 import sh
 import atexit
-atexit.register(killSubprocesses)
+import signal
+
+
+
 # Create the I2C bus interface.
 i2c_bus = busio.I2C(SCL, SDA)
 # Create PCA9685 class instance.
@@ -17,8 +20,7 @@ pca = PCA9685(i2c_bus)
 # Set the PWM frequency to 60hz.
 pca.frequency = 60
 processKeeper = {}
-
-
+thread = None
 
 
 
@@ -42,14 +44,15 @@ lightButtons = {
 def runButton(button, animation):
     lightButtons[button].setAnimationPattern(animation)
     lightButtons[button].setOutput()
-    lightButtons[button].runLights()
+    thread = lightButtons[button].runLights()
+    return thread
+
 
 
 def process_line(line, stdin, process):
     values = line.split()
     lightButtons[values[0]].setToggle(values[1])
-    print("TODO, " + line)
-    print(values)
+
 
 def main():
     for key in lightButtons:
@@ -61,6 +64,10 @@ def killSubprocesses():
     for key in processKeeper:
         processKeeper[key].kill()
 
+def killThreads(self,signum, frame):
+    for button in lightbuttons:
+        lightbuttons[button].end()
+    killSubprocesses()
 
 
 
@@ -77,4 +84,6 @@ if __name__ == "__main__":
 
 
 
-
+signal.signal(signal.SIGINT, self.killThreads)
+signal.signal(signal.SIGTERM, self.killThreads)
+atexit.register(killSubprocesses)

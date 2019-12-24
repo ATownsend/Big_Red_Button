@@ -74,3 +74,5 @@ class big_red_button:
             self.toggle = not self.toggle
             if self.output : print(self.name + "," + self.toggle)
             self.button.wait_for_release()
+    def end(self):
+        self.running = False
