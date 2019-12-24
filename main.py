@@ -51,7 +51,7 @@ def main():
     processKeeper = {}
     for key in lightButtons:
         #lightButtons[key].runLights()
-        processKeeper[key] = sh.python("main.py","--ButtonToRun", key ,"--AnimationPattern" ,json.dumps(lightButtons[key].getAnimationPattern()), _out=process_line, _bg=True)
+        processKeeper[key] = sh.python3("main.py","--ButtonToRun", key ,"--AnimationPattern" ,json.dumps(lightButtons[key].getAnimationPattern()), _out=process_line, _bg=True)
     processKeeper['leftHighButton'].wait()
     #while true:
     #    print("This Needs to be changed to a wait")
