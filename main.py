@@ -51,27 +51,32 @@ def process_line(line, stdin, process):
     lightButtons[values[0]].setToggle(bool(values[1]))
 
 def testLights(lights):
-    lightArray = lights.keys()
-    lightsFirst = [[0.5,0],[0,0]]
-    lightsSecond = [[1,0.5],[0,0]]
-    lightsThird = [[1,1],[0,0]]
+    lightArray = list(lights.keys())
+    lightsBlank = [0,0]
+    lightsFirst = [0.5,0]
+    lightsSecond = [1,0.5]
+    lightsFull = [1,1]
 
+    #Blank the lights
     for light in lightArray:
-        lights[light].setLights(lightsFirst)
-        time.sleep(0.2)
-        lights[light].setLights(lightsSecond)
-        time.sleep(0.2)
-        lights[light].setLights(lightsThird)
+        lights[light].setLights([lightsBlank,lightsBlank])
 
-    lightsFirst = [[0,0.5],[0,0]]
-    lightsSecond = [[0.5,1],[0,0]]
-    lightsThird = [[1,1],[0,0]]
+    #Crawl the top
+    for light in lightArray:
+        lights[light].setLights([lightsFirst,lightsBlank])
+        time.sleep(0.2)
+        lights[light].setLights([lightsSecond,lightsBlank])
+        time.sleep(0.2)
+        lights[light].setLights([lightsFull,lightsBlank])
+
+    #Crawl the Bottom
+
     for light in reversed(lightArray):
-        lights[light].setLights(lightsFirst)
+        lights[light].setLights([lightsFull, reversed(lightsFirst)])
         time.sleep(0.2)
-        lights[light].setLights(lightsSecond)
+        lights[light].setLights([lightsFull, reversed(lightsSecond)])
         time.sleep(0.2)
-        lights[light].setLights(lightsThird)
+        lights[light].setLights([lightsFull, reversed(lightsFull)])
 
     
 
