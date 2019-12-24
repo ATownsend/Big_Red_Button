@@ -72,7 +72,7 @@ class big_red_button:
         while self.running == True:
             self.button.wait_for_press()
             self.toggle = not self.toggle
-            if self.output : print(self.name + "," + self.toggle)
+            if self.output : print(self.name + "," + str(self.toggle))
             self.button.wait_for_release()
     def end(self):
         self.running = False
