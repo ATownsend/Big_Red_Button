@@ -22,8 +22,8 @@ pca.frequency = 60
 
 
 parser = argparse.ArgumentParser(description='Set Parameters for Runing lights')
-parser.add_argument('ButtonToRun', choices=['leftHighButton','leftRunButton','rightHighButton', 'rightRunButton'], default=None,required=False, help='Which Button to Run')
-parser.add_argument('AnimationPattern', type=str, default=None,required=False, help='Animation Pattern to run on button')
+parser.add_argument('--ButtonToRun', choices=['leftHighButton','leftRunButton','rightHighButton', 'rightRunButton'], default=None,required=False, help='Which Button to Run')
+parser.add_argument('--AnimationPattern', type=str, default=None,required=False, help='Animation Pattern to run on button')
 
 
 args = parser.parse_args()
@@ -45,13 +45,13 @@ def runButton(button, animation):
 
 
 def process_line(line, stdin, process):
-    print("TODO, Process Output")
+    print("TODO, " + line)
 
 def main():
     processKeeper = {}
     for key in lightButtons:
         #lightButtons[key].runLights()
-        processKeeper[key] = sh.python("main.py", key ,json.dump(lightButtons.getAnimationPattern()),_out=process_line,_bg=True)
+        processKeeper[key] = sh.python("main.py", key ,json.dump(lightButtons.getAnimationPattern()), _out=process_line, _bg=True)
     while true:
         print("This Needs to be changed to a wait")
         #TODO: monitor Subprocess
