@@ -46,8 +46,6 @@ def runButton(button, animation):
     lightButtons[button].setOutput()
     thread = lightButtons[button].runLights()
 
-
-
 def process_line(line, stdin, process):
     values = line.split(",")
     lightButtons[values[0]].setToggle(bool(values[1]))
@@ -69,7 +67,9 @@ def killThreads():
         lightbuttons[button].end()
     killSubprocesses()
 
-
+signal.signal(signal.SIGINT, killThreads)
+signal.signal(signal.SIGTERM, killThreads)
+atexit.register(killSubprocesses)
 
 if __name__ == "__main__":
     if args.ButtonToRun == None:
@@ -77,13 +77,3 @@ if __name__ == "__main__":
     else:
         animationPattern = json.loads(args.AnimationPattern)
         runButton(args.ButtonToRun, animationPattern)
-
-
-
-
-
-
-
-signal.signal(signal.SIGINT, killThreads)
-signal.signal(signal.SIGTERM, killThreads)
-atexit.register(killSubprocesses)
