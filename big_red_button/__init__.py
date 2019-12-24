@@ -9,7 +9,8 @@ def threaded(fn):
     return wrapper
 
 class big_red_button:
-    def __init__(self, lightArray, button, lightAnimationPattern = None, sleepTime = 0.27):
+    def __init__(self, lightArray, button, lightAnimationPattern = None, name = None, sleepTime = 0.27):
+        self.name = name
         self.toggle = False
         self.sleepTime = sleepTime
         self.button = button
@@ -71,5 +72,5 @@ class big_red_button:
         while self.running == True:
             self.button.wait_for_press()
             self.toggle = not self.toggle
-            if self.output : print(self.toggle)
+            if self.output : print(self.name + "," + self.toggle)
             self.button.wait_for_release()
