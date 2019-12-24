@@ -8,14 +8,15 @@ import argparse
 from adafruit_pca9685 import PCA9685
 import json
 import sh
-
+import atexit
+atexit.register(killSubprocesses)
 # Create the I2C bus interface.
 i2c_bus = busio.I2C(SCL, SDA)
 # Create PCA9685 class instance.
 pca = PCA9685(i2c_bus)
 # Set the PWM frequency to 60hz.
 pca.frequency = 60
-
+processKeeper = {}
 
 
 
@@ -51,20 +52,14 @@ def process_line(line, stdin, process):
     print(values)
 
 def main():
-    processKeeper = {}
     for key in lightButtons:
-        #lightButtons[key].runLights()
+        lightButtons[key].runLights()
         processKeeper[key] = sh.python3("main.py","--ButtonToRun", key ,"--AnimationPattern" ,json.dumps(lightButtons[key].getAnimationPattern()), _out=process_line, _bg=True)
     processKeeper['leftHighButton'].wait()
-    #while true:
-    #    print("This Needs to be changed to a wait")
-        #TODO: monitor Subprocess
 
-    #for when I make casino mode or connect it to tasks/smartthings
-    #processKeeper[key].kill()
-
-    #process = sh.python("test.py", _out=process_line)
-    #process.wait()
+def killSubprocesses():
+    for key in processKeeper:
+        processKeeper[key].kill()
 
 
 
