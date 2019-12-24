@@ -45,18 +45,18 @@ def runButton(button, animation):
     lightButtons[button].setAnimationPattern(animation)
     lightButtons[button].setOutput()
     thread = lightButtons[button].runLights()
-    return thread
 
 
 
 def process_line(line, stdin, process):
     values = line.split()
     lightButtons[values[0]].setToggle(values[1])
+    print(values)
 
 
 def main():
     for key in lightButtons:
-        lightButtons[key].runLights()
+        #lightButtons[key].runLights()
         processKeeper[key] = sh.python3("main.py","--ButtonToRun", key ,"--AnimationPattern" ,json.dumps(lightButtons[key].getAnimationPattern()), _out=process_line, _bg=True)
     processKeeper['leftHighButton'].wait()
 
@@ -64,7 +64,7 @@ def killSubprocesses():
     for key in processKeeper:
         processKeeper[key].kill()
 
-def killThreads(self,signum, frame):
+def killThreads():
     for button in lightbuttons:
         lightbuttons[button].end()
     killSubprocesses()
@@ -84,6 +84,6 @@ if __name__ == "__main__":
 
 
 
-signal.signal(signal.SIGINT, self.killThreads)
-signal.signal(signal.SIGTERM, self.killThreads)
+signal.signal(signal.SIGINT, killThreads)
+signal.signal(signal.SIGTERM, killThreads)
 atexit.register(killSubprocesses)
