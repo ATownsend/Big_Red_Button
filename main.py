@@ -10,7 +10,6 @@ import json
 import sh
 import atexit
 import signal
-import numpy
 
 
 ###############################
@@ -32,10 +31,11 @@ thread = None
 # Animations                  #
 #                             #
 ###############################
-stopLightAnimationPattern = [ [[  0,  0], [  1,  1]],    [[0.5,  0], [0.5,0.5]],    [[  1,0.5], [  1,  1]],    [[  1,  1], [0.5,0.5]],     [[0.5,  1], [  1,  1]],     [[  0,0.5], [0.5,0.5]] ]
-highLightAnimationPattern = [ [[0.5,  1], [0.5,  1]],    [[  1,0.5], [0.5,  1]],    [[0.5,  1], [  1,0.5]],    [[  1,0.5], [  1,0.5]]]
+stopLightAnimationPattern = [ [[  0,  0], [  1,  1]],    [[0.5,  0], [0.2,0.2]],    [[  1,0.5], [  1,  1]],    [[  1,  1], [0.2,0.2]],     [[0.5,  1], [  1,  1]],     [[  0,0.5], [0.2,0.2]] ]
 
-#highLightAnimationPattern = [ [[0.2,0.2], [0.1,0.1]],  [[0.4,0.4], [0.2,0.2]],  [[0.6,0.6], [0.3,0.3]],  [[0.8,0.8], [0.4,0.4]],  [[1,1], [0.5,0.5]],  [[0.8,0.8], [0.6,0.6]],  [[0.6,0.6], [0.7,0.7]],   [[0.4,0.4], [0.8,0.8]],  [[0.2,0.2], [1,1]]  ]
+#Old High-Low Animation
+#highLightAnimationPattern = [ [[0.5,  1], [0.5,  1]],    [[  1,0.5], [0.5,  1]],    [[0.5,  1], [  1,0.5]],    [[  1,0.5], [  1,0.5]]]
+
 animationList = []
 for counter in range(1,11):
     firstNumber = counter * 0.2
@@ -43,12 +43,6 @@ for counter in range(1,11):
     if firstNumber > 1: firstNumber = firstNumber - 1
     animationList.append([[firstNumber,firstNumber],[secondNumber,secondNumber]])
 highLightAnimationPattern = animationList
-#print(animationList)
-#print(numpy.asarray(animationList))
-#print(highLightAnimationPattern)
-    
-
-#highLightAnimationPattern = [ [[0.1,0.1], [0.1,0.1]],  [[0.2,0.2], [0.1,0.1]],  [[0.3,0.3], [0.2,0.2]],  [[0.4,0.4], [0.2,0.2]],  [[0.5,0.5], [0.3,0.3]],   ]
 
 ###############################
 #                             #
@@ -114,8 +108,7 @@ def testLights(lights, lightBank):
     lightsFull = [1,1]
 
     #Blank the lights
-    for light in lightArray:
-        lights[light].setLights([lightsBlank,lightsBlank])
+    blankLights(lights,lightBank)
 
     #Crawl the top
     for light in lightArray:
@@ -137,8 +130,12 @@ def testLights(lights, lightBank):
         light.on()
         time.sleep(1)
         light.off()
+    return True
 
-
+def blankLights(lights, lightBank):
+    lightsBlank = [0,0]
+    for light in lightArray:
+        lights[light].setLights([lightsBlank,lightsBlank])
     
 
 
@@ -152,6 +149,7 @@ def testLights(lights, lightBank):
 def killSubprocesses():
     for key in processKeeper:
         processKeeper[key].kill()
+    blankLights(lightButtons, ledArray)
 
 def killThreads(signal = None, other = None):
     for button in lightbuttons:

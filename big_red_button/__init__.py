@@ -46,6 +46,7 @@ class big_red_button:
     def setToggle(self,toggle = None):
         if toggle == None: self.toggle = not self.toggle
         else: self.toggle=toggle
+        return self.toggle
     def setOutput(self):
         self.output = True
 
