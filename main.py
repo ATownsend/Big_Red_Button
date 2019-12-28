@@ -154,7 +154,7 @@ def killSubprocesses():
 
 def killThreads(signal = None, other = None):
     for button in lightbuttons:
-        lightbuttons[button].end()
+        lightButtons[button].end()
     killSubprocesses()
 
 #Catch attempts to terminate so we can kill our threads and Subprocesses
