@@ -153,7 +153,7 @@ def killSubprocesses():
     blankLights(lightButtons, ledArray)
 
 def killThreads(signal = None, other = None):
-    for button in lightbuttons:
+    for button in lightButtons:
         lightButtons[button].end()
     killSubprocesses()
 
