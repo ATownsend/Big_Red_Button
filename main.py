@@ -37,14 +37,15 @@ highLightAnimationPattern = [ [[0.5,  1], [0.5,  1]],    [[  1,0.5], [0.5,  1]],
 
 #highLightAnimationPattern = [ [[0.2,0.2], [0.1,0.1]],  [[0.4,0.4], [0.2,0.2]],  [[0.6,0.6], [0.3,0.3]],  [[0.8,0.8], [0.4,0.4]],  [[1,1], [0.5,0.5]],  [[0.8,0.8], [0.6,0.6]],  [[0.6,0.6], [0.7,0.7]],   [[0.4,0.4], [0.8,0.8]],  [[0.2,0.2], [1,1]]  ]
 animationList = []
-for counter in range(1,10):
-    firstNumber = counter * 0.1
-    secondNumber = counter * 0.2
-    if secondNumber > 1: secondNumber = secondNumber - 1
+for counter in range(1,11):
+    firstNumber = counter * 0.2
+    secondNumber = counter * 0.1
+    if firstNumber > 1: firstNumber = firstNumber - 1
     animationList.append([[firstNumber,firstNumber],[secondNumber,secondNumber]])
-print(animationList)
+highLightAnimationPattern = animationList
+#print(animationList)
 #print(numpy.asarray(animationList))
-print(highLightAnimationPattern)
+#print(highLightAnimationPattern)
     
 
 #highLightAnimationPattern = [ [[0.1,0.1], [0.1,0.1]],  [[0.2,0.2], [0.1,0.1]],  [[0.3,0.3], [0.2,0.2]],  [[0.4,0.4], [0.2,0.2]],  [[0.5,0.5], [0.3,0.3]],   ]
