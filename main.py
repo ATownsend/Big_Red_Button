@@ -133,6 +133,7 @@ def testLights(lights, lightBank):
     return True
 
 def blankLights(lights, lightBank):
+    lightArray = list(lights.keys())
     lightsBlank = [0,0]
     for light in lightArray:
         lights[light].setLights([lightsBlank,lightsBlank])
