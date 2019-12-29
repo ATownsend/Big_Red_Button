@@ -17,10 +17,10 @@ class TestBigRedButton:
         pca.frequency = 60
         if not hasattr(self, "lightButtons"):
             self.lightButtons = {
-                'leftHighButton'  : big_red_button([[pca.channels[12],pca.channels[13]],[pca.channels[14],pca.channels[15]]],Button(pin=12), stopLightAnimationPattern, 'leftHighButton'),
-                'leftRunButton'   : big_red_button([[pca.channels[8],pca.channels[9]],[pca.channels[10],pca.channels[11]]],Button(pin=16), stopLightAnimationPattern, 'leftRunButton'),
-                'rightHighButton' : big_red_button([[pca.channels[4],pca.channels[5]],[pca.channels[6],pca.channels[7]]],Button(pin=20), stopLightAnimationPattern, 'rightHighButton'),
-                'rightRunButton'  : big_red_button([[pca.channels[0],pca.channels[1]],[pca.channels[2],pca.channels[3]]],Button(pin=21), stopLightAnimationPattern, 'rightRunButton')
+                'leftHighButton'  : big_red_button([[pca.channels[12],pca.channels[13]],[pca.channels[14],pca.channels[15]]],Button(pin=12), self.stopLightAnimationPattern, 'leftHighButton'),
+                'leftRunButton'   : big_red_button([[pca.channels[8],pca.channels[9]],[pca.channels[10],pca.channels[11]]],Button(pin=16), self.stopLightAnimationPattern, 'leftRunButton'),
+                'rightHighButton' : big_red_button([[pca.channels[4],pca.channels[5]],[pca.channels[6],pca.channels[7]]],Button(pin=20), self.stopLightAnimationPattern, 'rightHighButton'),
+                'rightRunButton'  : big_red_button([[pca.channels[0],pca.channels[1]],[pca.channels[2],pca.channels[3]]],Button(pin=21), self.stopLightAnimationPattern, 'rightRunButton')
             }
         return self.lightButtons[light]
 
