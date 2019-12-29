@@ -15,7 +15,7 @@ class TestBigRedButton:
         pca = PCA9685(i2c_bus)
         # Set the PWM frequency to 60hz.
         pca.frequency = 60
-        if self.lightButtons == None:
+        if not hasattr(self, "lightButtons"):
             self.lightButtons = {
                 'leftHighButton'  : big_red_button([[pca.channels[12],pca.channels[13]],[pca.channels[14],pca.channels[15]]],Button(pin=12), stopLightAnimationPattern, 'leftHighButton'),
                 'leftRunButton'   : big_red_button([[pca.channels[8],pca.channels[9]],[pca.channels[10],pca.channels[11]]],Button(pin=16), stopLightAnimationPattern, 'leftRunButton'),
