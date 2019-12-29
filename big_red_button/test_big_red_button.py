@@ -1,6 +1,6 @@
 #Unit Testing
 import pytest
-import big_red_button
+from big_red_button import big_red_button
 from adafruit_pca9685 import PCA9685
 from board import SCL, SDA
 import busio
@@ -8,21 +8,18 @@ from gpiozero import Button, LED
 
 class TestBigRedButton:
 
-
-
-    @pytest.fixture
     def create_square_light(self, light):
-        self.stopLightAnimationPattern = [ [[  0,  0], [  1,  1]],    [[0.5,  0], [0.2,0.2]],    [[  1,0.5], [  1,  1]],    [[  1,  1], [0.2,0.2]],     [[0.5,  1], [  1,  1]],     [[  0,0.5], [0.2,0.2]] ]
+        stopLightAnimationPattern = [ [[  0,  0], [  1,  1]],    [[0.5,  0], [0.2,0.2]],    [[  1,0.5], [  1,  1]],    [[  1,  1], [0.2,0.2]],     [[0.5,  1], [  1,  1]],     [[  0,0.5], [0.2,0.2]] ]
         i2c_bus = busio.I2C(SCL, SDA)
         # Create PCA9685 class instance.
         pca = PCA9685(i2c_bus)
         # Set the PWM frequency to 60hz.
         pca.frequency = 60
         self.lightButtons = {
-            'leftHighButton'  : big_red_button([[pca.channels[12],pca.channels[13]],[pca.channels[14],pca.channels[15]]],Button(pin=12), self.stopLightAnimationPattern, 'leftHighButton'),
-            'leftRunButton'   : big_red_button([[pca.channels[8],pca.channels[9]],[pca.channels[10],pca.channels[11]]],Button(pin=16), self.stopLightAnimationPattern, 'leftRunButton'),
-            'rightHighButton' : big_red_button([[pca.channels[4],pca.channels[5]],[pca.channels[6],pca.channels[7]]],Button(pin=20), self.stopLightAnimationPattern, 'rightHighButton'),
-            'rightRunButton'  : big_red_button([[pca.channels[0],pca.channels[1]],[pca.channels[2],pca.channels[3]]],Button(pin=21), self.stopLightAnimationPattern, 'rightRunButton')
+            'leftHighButton'  : big_red_button([[pca.channels[12],pca.channels[13]],[pca.channels[14],pca.channels[15]]],Button(pin=12), stopLightAnimationPattern, 'leftHighButton'),
+            'leftRunButton'   : big_red_button([[pca.channels[8],pca.channels[9]],[pca.channels[10],pca.channels[11]]],Button(pin=16), stopLightAnimationPattern, 'leftRunButton'),
+            'rightHighButton' : big_red_button([[pca.channels[4],pca.channels[5]],[pca.channels[6],pca.channels[7]]],Button(pin=20), stopLightAnimationPattern, 'rightHighButton'),
+            'rightRunButton'  : big_red_button([[pca.channels[0],pca.channels[1]],[pca.channels[2],pca.channels[3]]],Button(pin=21), stopLightAnimationPattern, 'rightRunButton')
         }
         return self.lightButtons[light]
 
