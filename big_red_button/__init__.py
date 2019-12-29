@@ -32,14 +32,14 @@ class big_red_button:
     def getAnimationPattern(self):
         return self.lightAnimationPattern
     def setToggleLights(self, lightPattern = None):
-        if lightPattern == None : lightPattern = self.currentLightPattern
+        if lightPattern == None : lightPattern = self.lightPattern
         if self.toggle == True:
             lightPattern = [lightPattern[0], [0,0]]
         elif self.toggle == False:
             lightPattern = [[0,0], lightPattern[1]]
         return lightPattern
     def setLights(self, lightPattern = None):
-        if lightPattern == None: lightPattern = self.currentLightPattern
+        if lightPattern == None: lightPattern = self.lightPattern
         for vertical in [0,1]:
             for horizontal in [0,1]:
                 self.lightArray[vertical][horizontal].duty_cycle = self.lightValue(lightPattern[vertical][horizontal])
