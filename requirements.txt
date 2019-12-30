@@ -1,0 +1,9 @@
+board
+adafruit-circuitpython-pca9685
+adafruit-circuitpython-servokit
+Adafruit-Blinka
+argparse
+gpiozero
+sh
+pytest
+RPi.GPIO
