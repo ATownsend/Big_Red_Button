@@ -1,0 +1,11 @@
+board
+adafruit-circuitpython-pca9685
+adafruit-circuitpython-servokit
+busio
+setuptools
+numpy
+argparse
+gpiozero
+board
+sh
+pytest
