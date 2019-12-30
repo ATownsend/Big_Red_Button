@@ -1,11 +1,9 @@
 board
 adafruit-circuitpython-pca9685
 adafruit-circuitpython-servokit
-busio
-setuptools
-numpy
+Adafruit-Blinka
 argparse
 gpiozero
-board
 sh
 pytest
+RPi.GPIO
